@@ -2,6 +2,7 @@
 
 $parent_dll = $MyInvocation.MyCommand.Path | Split-Path -Parent
 $sqlite_library_path = $parent_dll+"\System.Data.SQLite.dll" #path to dll SQLite
+Unblock-File $sqlite_library_path #unblock dll file
 [void][System.Reflection.Assembly]::LoadFrom($sqlite_library_path)
 $db_query = "SELECT origin_url,action_url,username_value,password_value,signon_realm  FROM logins"
 
