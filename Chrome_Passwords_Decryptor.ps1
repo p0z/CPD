@@ -27,7 +27,7 @@ foreach ($path in $paths) {
 	$encrypted_array=$db_dataset.Tables[0] | select signon_realm, username_value, password_value, path_to_file
 	foreach ($item in $encrypted_array) {
 		$item.password_value=decrypt_password -enc_pass $item
-		$item.path_to_file=$path.FullName -replace ".+\\$USER"
+		$item.path_to_file=$db_data_source
 	}
 	Remove-Item $bak
 $encrypted_array | Format-Table -AutoSize signon_realm, username_value, password_value, path_to_file
